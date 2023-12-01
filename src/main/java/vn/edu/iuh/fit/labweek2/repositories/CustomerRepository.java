@@ -6,52 +6,47 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import vn.edu.iuh.fit.labweek2.enums.EmployeeStatus;
-import vn.edu.iuh.fit.labweek2.models.Employee;
+import vn.edu.iuh.fit.labweek2.models.Customer;
 
 import java.util.List;
 import java.util.Optional;
 
-public class EmployeeRepository {
+public class CustomerRepository {
     private EntityManager cus;
     private EntityTransaction transaction;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
-    public EmployeeRepository(){
+    public CustomerRepository(){
         cus = Persistence.createEntityManagerFactory("lab-week-2").createEntityManager();
         transaction = cus.getTransaction();
     }
-    public void insertEmp(Employee employee){
+    public void insertCus(Customer customer){
         try {
             transaction.begin();
-            cus.persist(employee);
+            cus.persist(customer);
             transaction.commit();
         }catch (Exception e){
             transaction.rollback();
             logger.error(e.getMessage());
         }
     }
-    public void updateEmp(Employee employee){
+    public void updateCus(Customer customer){
         try {
             transaction.begin();
-            cus.merge(employee);
+            cus.merge(customer);
             transaction.commit();
         }catch (Exception e){
             transaction.rollback();
             logger.error(e.getMessage());
         }
     }
-
-    public void setStatus(Employee employee, EmployeeStatus employeeStatus){
-        employee.setStatus(employeeStatus);
-    }
-    public Optional<Employee> findById(long id){
-        TypedQuery<Employee> query = cus.createQuery("select e from Employee e where e.id = :id", Employee.class);
+    public Optional<Customer> findById(long id){
+        TypedQuery<Customer> query = cus.createQuery("select c from Customer c where c.id = :id", Customer.class);
         query.setParameter("id", id);
-        Employee employee = query.getSingleResult();
-        return employee == null ? Optional.empty():Optional.of(employee);
+        Customer customer = query.getSingleResult();
+        return customer == null ? Optional.empty():Optional.of(customer);
     }
-    public List<Employee> getAllEmp(){
-        return cus.createNamedQuery("Employee.findAll", Employee.class).setParameter(1, EmployeeStatus.ACTIVE).getResultList();
+    public List<Customer> getAllCustomer(){
+        return cus.createNamedQuery("Customer.findAll", Customer.class).getResultList();
     }
 }
