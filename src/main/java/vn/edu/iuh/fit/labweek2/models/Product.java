@@ -50,6 +50,23 @@ public class Product implements Serializable {
         this.status = status;
     }
 
+    public Product(long id, String des, String mn, String name, ProductStatus productStatus, String unit) {
+        this.id = id;
+        this.description = des;
+        this.manufacturerName = mn;
+        this.name = name;
+        this.status = productStatus;
+        this.unit = unit;
+    }
+
+    public Product(String des, String mn, String name, ProductStatus productStatus, String unit) {
+        this.description = des;
+        this.manufacturerName = mn;
+        this.name = name;
+        this.status = productStatus;
+        this.unit = unit;
+    }
+
     public long getId() {
         return id;
     }

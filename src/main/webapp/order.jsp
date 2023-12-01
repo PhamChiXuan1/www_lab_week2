@@ -1,9 +1,20 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: pc
+  Date: 01/12/2023
+  Time: 2:39 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.iuh.fit.labweek2.models.Employee" %>
+<%@ page import="vn.edu.iuh.fit.labweek2.services.EmployeeServices" %>
+<%@ page import="vn.edu.iuh.fit.labweek2.models.Product" %>
+<%@ page import="vn.edu.iuh.fit.labweek2.services.ProductService" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>JSP - Hello World</title>
-    <%@include file="css.jsp"%>
+    <title>Product</title>
+    <%@include file="css.jsp" %>
     <div class="container">
         <div class="col-xs-12">
             <nav class="navbar navbar-expand-sm">
